@@ -8,6 +8,14 @@ Create an array of strings called `colors` that contain "orange", "red", "yellow
 
 Then, using array subscripting and string interpolation, print out the String `"orange, yellow, and lavender are some of my favorite colors"`.
 
+```swift
+var arrayQ1: [String] = ["orange", "red", "yellow", "turquoise", "lavender"]
+
+var favColors = "\(arrayQ1[0]), \(arrayQ1[2]), and \(arrayQ1[4])"
+favColors += " are some of my favorite colors"
+print(favColors)
+```
+
 
 ## Question 2
 
@@ -15,12 +23,29 @@ Remove "Illinois" and "Kansas" from the array below.
 
 `var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]`
 
+```swift
+var westernStates = ["California", "Oregon", "Washington", "Idaho", "Illinois", "Kansas"]
+westernStates.popLast()
+westernStates.popLast()
+print(westernStates)
+
+```
 
 ## Question 3
 
 Iterate through the array below. For each state, print out the name of the state, a colon, and whether it is or is not **in the continental United States.**
 
 `let moreStates = ["Hawaii", "New Mexico", "Alaska", "Montana", "Texas", "New York", "Florida"]`
+
+```swift
+for a in moreStates {
+if a == "Hawaii" || a == "Alaska" {
+print("\(a): is not in the continental United States.")
+} else {
+print("\(a): is in the continental United States.")
+}
+}
+```
 
 
 ## Question 4
@@ -29,9 +54,32 @@ Print out how many non-whitespace characters are in `myString`:
 
 `let myString = "This is good practice with Strings!"`
 
+```swift
+var count = 0
+for a in myString {
+if "\(a)" != " " {
+count += 1
+}
+}
+print(count) //30
+```
 Iterate through the array below. For each sentence, print out how many non-whitespace characters are in it.
 
 `let myFavoriteQuotes = ["To be or not to be, that is the question.", "The only source of knowledge is experience.", "Mr. Gorbachev, tear down this wall!", "Four score and twenty years ago..."]`
+
+```swift
+var count = 0
+for a in myFavoriteQuotes.indices {
+for b in myFavoriteQuotes[a] {
+if "\(b)" != " " {
+count += 1
+continue
+}
+}
+print(count)
+count = 0
+}
+```
 
 
 ## Question 5
@@ -41,6 +89,14 @@ Iterate through `garden` and place any 🌷 that you find into the `basket`. Rep
 ```swift
 var garden = ["dirt","🌷","dirt","🌷","dirt","dirt","🌷","dirt","🌷","dirt"]
 var basket = [String]()
+
+for a in garden.indices {
+if garden[a] == "🌷" {
+basket.append("🌷")
+garden[a] = "dirt"
+}
+}
+print(basket.count)
 ```
 
 ## Question 6
@@ -53,7 +109,14 @@ The below array represents an unfinished batting lineup for a baseball team. **Y
 - Put "Reyes" to bat 8th instead.
 
 `var battingLineup = ["Reyes", "Jeter", "Ramirez", "Pujols","Griffey","Thomas","Jones", "Rodriguez"]`
-
+```swift
+battingLineup.remove(at: 0)
+battingLineup.append("Reyes")
+battingLineup.append("Suzuki")
+battingLineup[1] = "Tejada"
+battingLineup[5] = "Guerrero"
+print(battingLineup)
+```
 
 ## Question 7
 
@@ -66,6 +129,18 @@ Given an array of Ints, find out if it contains a target number.
 var numbers: [Int]
 
 let target: Int = 32
+
+var targetCount = 0
+for a in numbers {
+if a == target {
+targetCount += 1
+}
+}
+if targetCount >= 1 {
+print("true")
+} else {
+print("false")
+}
 ```
 
 Ex.1
@@ -97,6 +172,14 @@ Find the largest value in an array of Int.  Do not use the built-in `max()` meth
 let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
 
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
+
+var num = 0
+for a in arrayOfNumbers8 {
+if a >= num {
+num = a
+}
+}
+print(num)
 ```
 
 
@@ -108,6 +191,14 @@ Find the smallest value in an array of Int.  Do not use the built in min() metho
 let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}
 
 //This creates an array of 100 numbers in between 0 and 200.  For now, you don't need to worry about how it does that.
+
+var num = 200
+for a in arrayOfNumbers9 {
+if a <= num {
+num = a
+}
+}
+print(num)
 ```
 
 
@@ -117,6 +208,13 @@ Iterate through `secondListOfNumbers`, and print out all the odd numbers.
 
 `var secondListOfNumbers = [19,13,14,19,101,10000,141,404]`
 
+```swift
+for a in secondListOfNumbers {
+if a % 2 != 0 {
+print(a)
+}
+}
+```
 
 ## Question 11
 
@@ -124,6 +222,13 @@ Iterate through `thirdListOfNumbers`, and print out the sum.
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
 
+```swift
+var num = 0
+for a in thirdListOfNumbers {
+num += a
+}
+print(num)
+```
 
 ## Question 12
 
@@ -131,6 +236,13 @@ Iterate through `thirdListOfNumbers`, and print out the sum of all the even numb
 
 `var thirdListOfNumbers = [11, 26, 49, 61, 25, 40, 74, 3, 22, 23]`
 
+```swift
+for a in thirdListOfNumbers {
+if a % 2 == 0 {
+print(a)
+}
+}
+```
 
 ## Question 13
 
@@ -140,6 +252,14 @@ Append every Int that appears in both `listOne` and `listTwo` to the `sharedElem
 var listOne = [28, 64, 7, 96, 13, 32, 94, 11, 80, 68]
 var listTwo = [18, 94, 48, 6, 42, 68, 79, 76, 13, 7]
 var sharedElements = [Int]()
+
+for a in listOne {
+sharedElements.append(a)
+}
+for a in listTwo {
+sharedElements.append(a)
+}
+print(sharedElements.count)
 ```
 
 
@@ -150,6 +270,13 @@ Write code such that `noDupeList` has all the same Ints as `dupeFriendlyList`, b
 ```swift
 var dupeFriendlyList = [4,2,6,2,2,6,4,9,2,1]
 var noDupeList: [Int] = []
+
+for a in dupeFriendlyList {
+if !noDupeList.contains(a) {
+noDupeList.append(a)
+}
+}
+print(noDupeList)
 ```
 
 ## Question 15
@@ -158,6 +285,18 @@ Find the second smallest number in an Array of Ints
 
 `let arrayOfNumbers: [Int] = (1...100).map{ _ in Int.random(in: 0...200)}.map{Int($0)}`
 
+```swift
+var num = 200
+var num2nd = 100
+for a in arrayOfNumbers {
+if a < num {
+num = a
+} else if a < num2nd {
+num2nd = num
+}
+}
+print(num2nd)
+```
 
 ## Question 16
 
@@ -165,13 +304,40 @@ If we list all the natural numbers below 10 that are multiples of 3 or 5, we get
 
 Find the sum of all the multiples of 3 or 5 below 1000.
 
-
+```swift
+var arrayQ16: [Int] = []
+for a in 0..<1000 {
+if a % 3 == 0 || a % 5 == 0 {
+arrayQ16.append(a)
+}
+}
+var sum = 0
+for a in arrayQ16 {
+sum += a
+}
+print(sum)
+```
 ## Question 17
 
 Make an array that contains all elements that appear **more than twice** in `someRepeatsAgain`.
 
 ```swift
 var someRepeatsAgain = [25,11,30,31,50,28,4,37,13,20,24,38,28,14,44,33,7,43,39,35,36,42,1,40,7,14,23,46,21,39,11,42,12,38,41,48,20,23,29,24,50,41,38,23,11,30,50,13,13,16,10,8,3,43,10,20,28,39,24,36,21,13,40,25,37,39,31,4,46,20,38,2,7,11,11,41,45,9,49,31,38,23,41,16,49,29,14,6,6,11,5,39,13,17,43,1,1,15,25]
+
+var arrayQ17: [Int] = []
+var repeatCount = 0
+for a in someRepeatsAgain.indices {
+for b in someRepeatsAgain {
+if someRepeatsAgain[a] == b {
+repeatCount += 1
+}
+if repeatCount > 2 && !arrayQ17.contains(b){
+arrayQ17.append(b)
+repeatCount = 0
+}
+}
+}
+print(arrayQ17)
 ```
 
 
@@ -181,7 +347,19 @@ Identify if there are 3 integers that sum to 10 in the following array. If so, p
 
 `var tripleSumArr = [-20,-14, -8,-5,-3,-2,1,2,3,4,9,15,20,30]`
 
-
+```swift
+var tripleSum10: [[Int]] = []
+for a in tripleSumArr {
+for b in tripleSumArr {
+for c in tripleSumArr {
+if (a + b + c) == 10 {
+tripleSum10.append([a,b,c])
+}
+}
+}
+}
+print(tripleSum10)
+```
 ## Question 19
 
 Given an array of Strings, find the the String with the most "a"s in it.
@@ -189,6 +367,33 @@ Given an array of Strings, find the the String with the most "a"s in it.
 input: `["apes", "abba", "apple"]`
 
 output: `"abba"`
+
+```swift
+var sampleQ19 = ["apes", "abba", "apple"]
+var numberOfA = 0
+var arrayForA: [Int] = []
+var placeHolder = 0
+for a in sampleQ19.indices {
+for b in sampleQ19[a] {
+if "\(b)" == "a" {
+numberOfA += 1
+continue
+}
+}
+arrayForA.append(numberOfA)
+numberOfA = 0
+}
+for a in arrayForA {
+if a >= placeHolder {
+placeHolder = a
+}
+}
+for a in arrayForA.indices {
+if placeHolder == arrayForA[a] {
+print(sampleQ19[a])
+}
+}
+```
 
 
 ## Question 20
@@ -199,6 +404,32 @@ Input: `[[2,4,1],[3,0],[9,3]]`
 
 Output: `[9,3]`
 
+```swift
+var arrayOfArrays = [[2,4,1],[3,0],[9,3]]
+var sum = 0
+var blankArray: [Int] = []
+for a in arrayOfArrays.indices {
+for b in arrayOfArrays[a] {
+sum += b
+}
+blankArray.append(sum)
+sum = 0
+}
+
+var placeHolder = 0
+for a in blankArray {
+if a >= placeHolder {
+placeHolder = a
+}
+}
+
+for a in arrayOfArrays.indices {
+if placeHolder == blankArray[a] {
+print(arrayOfArrays[a])
+}
+}
+```
+
 
 ## Question 21
 
@@ -208,6 +439,17 @@ Input: `[(4,2), (-3,-3), (1,1), (3,9)]`
 
 Output: `[(-3,-3), (1,1)]`
 
+```swift
+var arrayOfTuples = [(4,2), (-3,-3), (1,1), (3,9)]
+var ArrayForQ21: [(Int,Int)] = []
+for a in arrayOfTuples.indices {
+if arrayOfTuples[a].0 == arrayOfTuples[a].1 {
+ArrayForQ21.append((arrayOfTuples[a].0,arrayOfTuples[a].1))
+}
+}
+print(ArrayForQ21)
+```
+
 
 ## Question 22
 
@@ -216,7 +458,16 @@ Given an Array of Bools, make a variable called `allAreTrue` that is true if all
 Input: `[true, false, true, true]`
 
 Output: `false`
-
+```swift
+var boolArray = [true, false, true, true]
+var allAreTrue = true
+if boolArray.contains(false) {
+allAreTrue = false
+} else {
+allAreTrue = true
+}
+print(allAreTrue)
+```
 
 ## Question 23
 
@@ -226,6 +477,18 @@ Input: `[0..<3 , 2..<10, -4..<6, 13..<14]`
 
 Output: `[-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,13]`
 
+```swift
+var rangeArray = [0..<3 , 2..<10, -4..<6, 13..<14]
+var numbersInRange: [Int] = []
+for a in rangeArray.indices {
+for b in rangeArray[a] {
+if !numbersInRange.contains(b) {
+numbersInRange.append(b)
+}
+}
+}
+print(numbersInRange.sorted())
+```
 
 ## Question 24
 
@@ -235,6 +498,25 @@ Input: `let arr: [Character] = ["a", "p","P","l","E"," ","S","a","u","C,"e"]`
 
 Output: `"ApLeAuE"`
 
+```swift
+let arr: [Character] = ["a", "p","P","l","E"," ","S","a","u","C","e"]
+var blank = ""
+for (index, a) in arr.enumerated() {
+if a.isUppercase {
+continue
+}
+if a.isWhitespace {
+continue
+}
+if index % 2 != 0 {
+blank += "\(a.uppercased())"
+} else {
+blank += "\(a)"
+}
+}
+print(blank)
+```
+
 
 ## Question 25
 
@@ -242,12 +524,31 @@ Print out each element in `myMatrix`
 
 `var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]`
 
+```swift
+var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]
+for a in 0...2 {
+print(myMatrix[a])
+}
+```
+
 
 ## Question 26
 
 Print out the sum of the diagonals of `myMatrix`.
 
 `var myMatrix = [[10, 14, 12], [91, 1, 9], [31, 3, 21]]`
+
+```swift
+var sum1Diagonal = 0
+var sum2Diagonal = 0
+for a in 0...2 {
+sum1Diagonal += myMatrix[a][a]
+}
+for a in 0...2 {
+sum2Diagonal += myMatrix[a][2-a]
+}
+print(sum1Diagonal + sum2Diagonal)
+```
 
 
 ## Question 27
@@ -257,3 +558,29 @@ Using for loops, rotate `matrixToRotate` 90 degrees.
 var matrixToRotate = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 ![Matrix Rotation](images/rotated_matrix.jpeg)
+
+```swift
+var rotatedMatrix: [[Int]] = []
+var array1: [Int] = []
+var array2: [Int] = []
+var array3: [Int] = []
+
+for a in 0...2 {
+array1.append(matrixToRotate[2-a][0])
+}
+
+for a in 0...2 {
+array2.append(matrixToRotate[2-a][1])
+}
+
+for a in 0...2 {
+array3.append(matrixToRotate[2-a][2])
+}
+
+rotatedMatrix.append(array1)
+rotatedMatrix.append(array2)
+rotatedMatrix.append(array3)
+for a in 0...2 {
+print(rotatedMatrix[a])
+}
+```
